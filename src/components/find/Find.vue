@@ -195,6 +195,9 @@ export default {
   },
   methods: {
     toPerson() {
+      this.$store.commit('changeTitle','个人风采');
+      this.$store.commit('changeBottomShow',false);
+      this.$store.commit('changetabRouterName','Person');
       this.$router.push("/Person");
     }
   }

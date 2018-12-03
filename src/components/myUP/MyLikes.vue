@@ -4,7 +4,7 @@
       <li>
         <p class="like-time">2018-10-18</p>
         <div class="img-box">
-          <img src="../../assets/user.png" alt>
+          <img src="../../assets/user.png" alt @click="toPerson">
           <img src="../../assets/user.png" alt>
           <img src="../../assets/user.png" alt>
         </div>
@@ -37,6 +37,14 @@
 export default {
   data() {
     return {};
+  },
+  methods:{
+    toPerson(){
+      this.$store.commit('changeTitle','个人风采');
+      this.$store.commit('changeBottomShow',false);
+      this.$store.commit('changetabRouterName','backML');
+      this.$router.push("/Person");
+    }
   }
 };
 </script>

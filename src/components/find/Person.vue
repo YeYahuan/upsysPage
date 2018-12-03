@@ -74,7 +74,7 @@ export default {
   left: .2rem;
   width: 7rem;
   height: 0.01rem;
-  padding: 0px;
+  padding: .01rem;
   background-color: #d5d5d5;
   overflow: hidden;
 }

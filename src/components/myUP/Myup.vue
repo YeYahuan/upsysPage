@@ -9,17 +9,17 @@
     </div>
     <div class="cf item-box">
       <div class="item add-border">
-        <img src="../../assets/logo.png" alt class="iconImg">
+        <img src="../../assets/logo.png" alt class="iconImg" @click="toBarrage">
         <br>
         <span>弹幕管理</span>
       </div>
-      <div class="item add-border">
-        <img src="../../assets/logo.png" alt class="iconImg">
+      <div class="item add-border" >
+        <img src="../../assets/logo.png" alt class="iconImg" @click="toLikeMe">
         <br>
         <span>赞过我</span>
       </div>
       <div class="item">
-        <img src="../../assets/logo.png" alt class="iconImg">
+        <img src="../../assets/logo.png" alt class="iconImg" @click="toFollowMe">
         <br>
         <span>我的粉丝</span>
       </div>
@@ -66,15 +66,39 @@ export default {
   methods:{
     toMyLabel(){
       this.$store.commit('changeTitle','个性标签');
+      this.$store.commit('changeBottomShow',false);
+      this.$store.commit('changetabRouterName','MyLabel')
       this.$router.push('/MyLabel')
     },
     toMyLikes(){
       this.$store.commit('changeTitle','我赞过的');
-      this.$router.push('/MyLike')
+      this.$store.commit('changeBottomShow',false);
+      this.$store.commit('changetabRouterName','MyLike');
+      this.$router.push('/MyLike');
     },
     toMyFollows(){
       this.$store.commit('changeTitle','我关注的');
-      this.$router.push('/MyFollow')
+      this.$store.commit('changeBottomShow',false);
+      this.$store.commit('changetabRouterName','MyFollow');
+      this.$router.push('/MyFollow');
+    },
+    toBarrage(){
+      this.$store.commit('changeTitle','弹幕管理');
+      this.$store.commit('changeBottomShow',false);
+      this.$store.commit('changetabRouterName','Barrage');
+      this.$router.push('/Barrage');
+    },
+    toLikeMe(){
+      this.$store.commit('changeTitle','赞过我');
+      this.$store.commit('changeBottomShow',false);
+      this.$store.commit('changetabRouterName','LikeMe');
+      this.$router.push('/LikeMe');
+    },
+    toFollowMe(){
+      this.$store.commit('changeTitle','我的粉丝');
+      this.$store.commit('changeBottomShow',false);
+      this.$store.commit('changetabRouterName','FollowMe');
+      this.$router.push('/FollowMe');
     }
   }
 };

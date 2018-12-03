@@ -13,11 +13,23 @@ Vue.config.productionTip = false
 
 const store = new Vuex.Store({
         state: {
-            title: '画像系统平台'
+            title: '画像系统平台',
+            tabRouterName: 'Main',
+            showBottom: false,
+            selected: '个人画像'
         },
         mutations: {
             changeTitle(state, titleName) {
                 state.title = titleName;
+            },
+            changetabRouterName(state, tabRouterName) {
+                state.tabRouterName = tabRouterName;
+            },
+            changeBottomShow(state, isShow) {
+                state.showBottom = isShow;
+            },
+            changeBottomSelected(state, selected) {
+                state.selected = selected;
             }
         }
     })
