@@ -11,30 +11,35 @@
       </mt-swipe-item>
       <mt-swipe-item>
         <span class="title">个人能力柱状图</span>
-        <div>
-          <mt-range v-model="rangeValue" :bar-height="5">
-            <div slot="start">基本面0</div>
-            <div slot="end">100</div>
+        <div :style="myChart">
+          <span>当前得分：{{jbmRangeValue}}</span>
+          <mt-range v-model="jbmRangeValue" :bar-height="5" :min="100" :max="2000">
+            <div slot="start">基本面：100</div>
+            <div slot="end">2000</div>
           </mt-range>
           <p></p>
-          <mt-range v-model="rangeValue" :bar-height="5">
-            <div slot="start">岗位0</div>
-            <div slot="end">100</div>
+          <span>当前得分：{{gwRangeValue}}</span>
+          <mt-range v-model="gwRangeValue" :bar-height="5" :min="100" :max="3000">
+            <div slot="start">岗位：100</div>
+            <div slot="end">3000</div>
           </mt-range>
           <p></p>
-          <mt-range v-model="rangeValue" :bar-height="5">
-            <div slot="start">学习力0</div>
-            <div slot="end">100</div>
+          <span>当前得分：{{xxlRangeValue}}</span>
+          <mt-range v-model="xxlRangeValue" :bar-height="5" :min="0" :max="370">
+            <div slot="start">学习力：0</div>
+            <div slot="end">370</div>
           </mt-range>
           <p></p>
-          <mt-range v-model="rangeValue" :bar-height="5">
-            <div slot="start">影响力0</div>
-            <div slot="end">100</div>
+          <span>当前得分：{{gzlRangeValue}}</span>
+          <mt-range v-model="gzlRangeValue" :bar-height="5" :min="-1200" :max="1700">
+            <div slot="start">工作力：-1200</div>
+            <div slot="end">1700</div>
           </mt-range>
           <p></p>
-          <mt-range v-model="rangeValue" :bar-height="5">
-            <div slot="start">奖惩情况0</div>
-            <div slot="end">100</div>
+          <span>当前得分：{{jcqkRangeValue}}</span>
+          <mt-range v-model="jcqkRangeValue" :bar-height="5" :min="-600" :max="500">
+            <div slot="start">奖惩情况：-600</div>
+            <div slot="end">500</div>
           </mt-range>
         </div>
       </mt-swipe-item>
@@ -47,7 +52,11 @@ import { Range } from "mint-ui";
 export default {
   data() {
     return {
-      rangeValue: 50,
+      jbmRangeValue: 500,
+      gwRangeValue:1070,
+      xxlRangeValue:100,
+      gzlRangeValue:1000,
+      jcqkRangeValue:200,
       myChart: {
         width: "7rem",
         height: ""
@@ -64,6 +73,7 @@ export default {
     };
   },
   mounted() {
+    
     this.myChart.height =
       $("body").height() - 6.7 * parseInt($("html").css("font-size")) + "px";
     this.mySwipeimg.height =
@@ -96,11 +106,11 @@ export default {
             }
           },
           indicator: [
-            { name: "基本面", max: 6500 },
-            { name: "影响力", max: 16000 },
-            { name: "学习力", max: 30000 },
-            { name: "奖惩情况", max: 38000 },
-            { name: "岗位", max: 52000 }
+            { name: "基本面", max: 2000 },
+            { name: "岗位", max: 1300 },
+            { name: "学习力", max: 370 },
+            { name: "奖惩情况", max: 500 },
+            { name: "工作力", max: 1700 }
           ]
         },
         series: [
@@ -110,7 +120,7 @@ export default {
             // areaStyle: {normal: {}},
             data: [
               {
-                value: [4300, 10000, 28000, 35000, 50000],
+                value: [500, 1070, 100, 200, 1000],
                 name: "预算分配（Allocated Budget）"
               }
             ]
@@ -125,6 +135,17 @@ export default {
 </script>
 
 <style>
+.mt-range{
+  height: 1rem;
+  line-height: 1rem;
+  width:6.8rem;
+  margin:0 auto;
+}
+.mt-range-thumb{
+  top:.3rem;
+  width:.4rem;
+  height: .4rem;
+}
 .score-box {
   height: 3rem;
   margin: 0.3rem auto;

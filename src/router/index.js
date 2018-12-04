@@ -9,6 +9,7 @@ import MyFollow from '@/components/myUP/MyFollows'
 import FollowMe from '@/components/myUP/FollowMe'
 import LikeMe from '@/components/myUP/LikeMe'
 import Barrage from '@/components/myUP/Barrage'
+import brg from '@/components/myUP/brg'
 import Find from '@/components/find/Find'
 import Person from '@/components/find/Person'
 
@@ -75,6 +76,11 @@ export default new Router({
             path: '/Barrage',
             name: Barrage,
             component: Barrage
+        },
+        {
+            path: '/brg',
+            name: brg,
+            component: brg
         }
     ]
 })
