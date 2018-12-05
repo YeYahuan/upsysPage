@@ -11,7 +11,7 @@
       </mt-swipe-item>
       <mt-swipe-item>
         <span class="title">个人能力柱状图</span>
-        <div :style="myChart">
+        <div :style="myChart" >
           <span>当前得分：{{jbmRangeValue}}</span>
           <mt-range v-model="jbmRangeValue" :bar-height="5" :min="100" :max="2000">
             <div slot="start">基本面：100</div>

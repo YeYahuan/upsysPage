@@ -2,12 +2,12 @@
   <div class="cf icon-box">
     <ul>
       <li @click="toMain">
-        <img src="../assets/user.png" alt="" class="iconImg">
+        <img src="../assets/userup.png" alt="" class="iconImg">
         <br>
         员工画像
       </li>
       <li>
-       <img src="../assets/user.png" alt="" class="iconImg">
+       <img src="../assets/projectup.png" alt="" class="iconImg">
        <br>
         项目画像
       </li>

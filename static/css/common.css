@@ -163,3 +163,20 @@ body {
     background: #0076ff!important;
     opacity: 1!important;
 }
+
+.mt-range {
+    height: 1rem!important;
+    line-height: 1rem!important;
+    width: 7rem!important;
+    margin: 0 auto;
+}
+
+.mt-range-thumb {
+    top: .3rem !important;
+    width: .4rem!important;
+    height: .4rem!important;
+}
+
+.power {
+    padding-top: 1rem
+}

@@ -48,7 +48,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .like-box {
   font-size: 0.26rem;
   padding: 0 0.3rem;

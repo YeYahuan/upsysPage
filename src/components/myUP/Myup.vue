@@ -9,17 +9,17 @@
     </div>
     <div class="cf item-box">
       <div class="item add-border">
-        <img src="../../assets/logo.png" alt class="iconImg" @click="toBarrage">
+        <img src="../../assets/barrage.png" alt class="iconImg" @click="toBarrage">
         <br>
         <span>弹幕管理</span>
       </div>
       <div class="item add-border" >
-        <img src="../../assets/logo.png" alt class="iconImg" @click="toLikeMe">
+        <img src="../../assets/like.png" alt class="iconImg" @click="toLikeMe">
         <br>
         <span>赞过我</span>
       </div>
       <div class="item">
-        <img src="../../assets/logo.png" alt class="iconImg" @click="toFollowMe">
+        <img src="../../assets/heart_blue.png" alt class="iconImg" @click="toFollowMe">
         <br>
         <span>我的粉丝</span>
       </div>
@@ -36,21 +36,21 @@
           </div>
           <div class="item-right">
             <span>更多</span>
-            <span>></span>
+            <span><img src="../../assets/arrow.png" alt=""></span>
           </div>
         </li>
         <li class="like-box cf"  @click="toMyLikes">
           <div>我赞过的</div>
           <div class="item-right">
             <span>查看</span>
-            <span>></span>
+            <span><img src="../../assets/arrow.png" alt=""></span>
           </div>
         </li>
         <li class="like-box cf" @click="toMyFollows">
           <div>我关注的</div>
           <div class="item-right">
             <span>查看</span>
-            <span>></span>
+            <span><img src="../../assets/arrow.png" alt=""></span>
           </div>
         </li>
       </ul>
@@ -185,6 +185,9 @@ li {
   border: 0.01rem solid #ccc;
   padding: 0.08rem 0.2rem;
   margin-left: 0.12rem;
+}
+.item-right img{
+  width: .32rem !important;
 }
 </style>
 

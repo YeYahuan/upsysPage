@@ -2,15 +2,15 @@
   <div class="bottom cf">
     <ul>
       <li @click="toMain" :class="{selected:selected=='个人画像'}">
-        <img src="../../assets/logo.png" alt>
+        <img src="../../assets/person.png" alt>
         <p>个人画像</p>
       </li>
       <li @click="toFind" :class="{selected:selected=='发现'}">
-        <img src="../../assets/logo.png" alt>
+        <img src="../../assets/find.png" alt>
         <p>发现</p>
       </li>
       <li @click="toMe" :class="{selected:selected=='我的'}">
-        <img src="../../assets/logo.png" alt>
+        <img src="../../assets/user.png" alt>
         <p>我的</p>
       </li>
     </ul>
