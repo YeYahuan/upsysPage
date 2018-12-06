@@ -12,17 +12,17 @@
     <div class="cf my-score-box">
       <div class="score-left">
         <span>
-          <img :src="like_url"  @click="changeLike">
+          <img :src="like_url" @click="changeLike" id="likeMe">
         </span>
         <br>
-        <span>4,454</span>
+        <span>{{likeNum}}</span>
       </div>
       <div class="score-right">
         <span>
-          <img :src="heart_url" alt @click="changeHeart">
+          <img :src="heart_url" alt @click="changeHeart" id="heartMe">
         </span>
         <br>
-        <span>1,000</span>
+        <span>{{heartNum}}</span>
       </div>
     </div>
     <mt-navbar v-model="selected" class="my-bar">
@@ -34,15 +34,21 @@
       <mt-tab-container-item id="1">
         <div class="add-box">
           <button @click="addLabel">+自定义标签</button>
+          
+          <img src="../../assets/arrow.png" alt @click="lookMore">
+          <br>
+          <span class="moreClass" @click="lookMore">查看更多</span>
         </div>
 
         <div class="label-box">
           <span
             class="tag-item"
+            @click="add(item,index)"
             v-for="(item,index) in testList"
             :key="index"
             :style="{color:'#'+Math.floor(Math.random() * 16777215).toString(16)}"
-          >{{item}}</span>
+            :id="'item'+index"
+          >{{item.name}}({{item.count}})</span>
         </div>
       </mt-tab-container-item>
       <mt-tab-container-item id="2"></mt-tab-container-item>
@@ -95,26 +101,32 @@
 import { Navbar, TabItem } from "mint-ui";
 import { MessageBox } from "mint-ui";
 import Main from "../main/Main";
-import likeme from '../../assets/likeme.png';
-import solidLikeme from '../../assets/solid_likeme.png';
-import heart from '../../assets/heart_blue.png'
-import solidHeart from '../../assets/solid_heart_blue.png'
+import likeme from "../../assets/likeme.png";
+import solidLikeme from "../../assets/solid_likeme.png";
+import heart from "../../assets/heart_blue.png";
+import solidHeart from "../../assets/solid_heart_blue.png";
+
 export default {
   data() {
     return {
-      likeFlag:false,
-      heartFlag:false,
-      like_url:likeme,
-      heart_url:heart,
+      likeNum: 4454,
+      heartNum: 1000,
+      hasClick: false,
+      likeFlag: false,
+      heartFlag: false,
+      like_url: likeme,
+      heart_url: heart,
       selected: "1",
       msg: "", //缓存
       ku: [],
-      //存取数据
-      barrageBox: {
-        width: "7rem",
-        margin: ".2rem auto",
-        height: ""
-      },
+      // //存取数据
+      // labelBox: {
+      //   width: "7rem",
+      //   margin: ".2rem auto",
+      //   height: "",
+      //   overflow:"hidden",
+      //   paddingBottom:'1rem'
+      // },
       jbmRangeValue: 500,
       gwRangeValue: 1070,
       xxlRangeValue: 100,
@@ -134,17 +146,36 @@ export default {
         textAlign: "center"
       },
       testList: [
-        "大人物",
-        "小人物",
-        "埃里克的实际发",
-        "sdlkfls ",
-        "发生是",
-        "打撒所多",
-        "是的发生按时",
-        "asdasdada",
-        "抖抖傲",
-        "安达市大所多",
-        "asdasasd"
+        { name: "大人物", count: 2 },
+        { name: "大人ws物", count: 2 },
+        { name: "大sdfsd人物", count: 2 },
+        { name: "大人物", count: 2 },
+        { name: "大sdfsd人物", count: 2 },
+        { name: "大是滴人物", count: 2 },
+        { name: "大人物", count: 2 },
+        { name: "大是的发生s人物", count: 2 },
+        { name: "大水电费人物", count: 2 },
+        { name: "大人物", count: 2 },
+        { name: "大水电费人物", count: 2 },
+        { name: "大人物", count: 2 },
+        { name: "大是的发生人物", count: 2 },
+        { name: "大人物水电费", count: 2 },
+        { name: "大人物", count: 2 },
+        { name: "大水电费人物", count: 2 },
+        { name: "大双方的服务人物", count: 2 },
+        { name: "大人是的发生物", count: 2 },
+        { name: "大人物", count: 2 },
+        { name: "大水电费人物", count: 2 },
+        { name: "大人物", count: 2 },
+        { name: "大水电费人物", count: 2 },
+        { name: "大人物", count: 2 },
+        { name: "大是的发生人物", count: 2 },
+        { name: "大人物水电费", count: 2 },
+        { name: "大人物", count: 2 },
+        { name: "大水电费人物", count: 2 },
+        { name: "大双方的服务人物", count: 2 },
+        { name: "大人是的发生物", count: 2 },
+        { name: "大人物", count: 2 }
       ]
     };
   },
@@ -152,8 +183,8 @@ export default {
     "my-main": Main
   },
   mounted() {
-    this.barrageBox.height =
-      $("body").height() - 4.5 * parseInt($("html").css("font-size")) + "px";
+    // this.labelBox.height =
+    //   $("body").height() - 4.5 * parseInt($("html").css("font-size")) + "px";
     this.myChart.height =
       $("body").height() - 5.5 * parseInt($("html").css("font-size")) + "px";
     this.mySwipeimg.height =
@@ -172,7 +203,7 @@ export default {
         title: {},
         tooltip: {},
         legend: {
-          data: ["预算分配"]
+          data: ["个人能力雷达图"]
         },
         radar: {
           // shape: 'circle',
@@ -194,13 +225,13 @@ export default {
         },
         series: [
           {
-            name: "预算 vs 开销（Budget vs spending）",
+            name: "",
             type: "radar",
             // areaStyle: {normal: {}},
             data: [
               {
                 value: [500, 1070, 100, 200, 1000],
-                name: "预算分配（Allocated Budget）"
+                name: ""
               }
             ]
           }
@@ -225,23 +256,48 @@ export default {
           console.log("取消操作");
         });
     },
-    changeLike(){
-      if(!this.likeFlag){
+    changeLike() {
+      if (!this.likeFlag) {
         this.like_url = solidLikeme;
         this.likeFlag = true;
-      }else{
+        this.likeNum++;
+        this.addOneAnimate("#likeMe");
+      } else {
         this.like_url = likeme;
         this.likeFlag = false;
+        this.likeNum--;
       }
     },
-    changeHeart(){
-      if(!this.heartFlag){
+    changeHeart() {
+      if (!this.heartFlag) {
         this.heart_url = solidHeart;
         this.heartFlag = true;
-      }else{
+        this.heartNum++;
+        this.addOneAnimate("#heartMe");
+      } else {
         this.heart_url = heart;
         this.heartFlag = false;
+        this.heartNum--;
       }
+    },
+    add(item, index) {
+      item.count++;
+      var el = "#item" + index;
+      this.hasClick = true;
+      this.addOneAnimate(el);
+    },
+    addOneAnimate(el) {
+      $.tipsBox({
+        obj: $(el),
+        str: "+1",
+        callback: function() {}
+      });
+    },
+    lookMore(){
+      this.$store.commit('changeTitle','个人印象');
+      this.$store.commit('changeBottomShow',false);
+      this.$store.commit('changetabRouterName','PersonImpression');
+      this.$router.push('PersonImpression');
     }
   },
   computed: {}
@@ -292,8 +348,8 @@ export default {
   width: 2.35rem;
   text-align: center;
 }
-.my-score-box img{
-  width:.5rem;
+.my-score-box img {
+  width: 0.5rem;
 }
 .my-bar {
   position: absolute;
@@ -316,8 +372,8 @@ export default {
 }
 .my-container button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 0.2rem;
+  left: 0.2rem;
   border: 1px dashed #26a2ff;
   border-radius: 0.1rem;
   width: 2rem;
@@ -326,8 +382,21 @@ export default {
   color: #26a2ff;
   background-color: #fff;
 }
+.my-container img {
+  position: absolute;
+  width: 0.3rem;
+  top: 0.25rem;
+  right: 0rem;
+}
+.moreClass{
+  position:absolute;
+  top:0.2rem;
+  right: .4rem;
+  font-size: .28rem;
+  /* color:#26a2ff; */
+}
 .label-box {
-  font-size: 0.4rem;
+  font-size: 0.3rem;
   /* padding: .4rem .4rem ; */
   text-align: center;
   /* color: #aaa */

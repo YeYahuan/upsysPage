@@ -12,7 +12,7 @@ import Barrage from '@/components/myUP/Barrage'
 import brg from '@/components/myUP/brg'
 import Find from '@/components/find/Find'
 import Person from '@/components/find/Person'
-
+import PersonImpression from '@/components/find/PersonImpression'
 
 Vue.use(Router)
 
@@ -81,6 +81,11 @@ export default new Router({
             path: '/brg',
             name: brg,
             component: brg
+        },
+        {
+            path: '/PersonImpression',
+            name: PersonImpression,
+            component: PersonImpression
         }
     ]
 })

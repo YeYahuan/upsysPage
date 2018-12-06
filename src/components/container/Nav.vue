@@ -58,6 +58,11 @@
 					this.$store.commit('changeTitle','我关注的');
 					this.$store.commit('changetabRouterName','MyFollow')
 					this.$router.push('/MyFollow')
+				}else if('PersonImpression'.indexOf(this.tabRouterName)!=-1){
+					this.$store.commit('changeBottomShow',false);
+					this.$store.commit('changeTitle','个人风采');
+					this.$store.commit('changetabRouterName','Person')
+					this.$router.push('/Person')
 				}else{
 					this.$router.push('/Index')
 					this.$store.commit('changetabRouterName','Main')
