@@ -46,7 +46,6 @@
             @click="add(item,index)"
             v-for="(item,index) in testList"
             :key="index"
-            :style="{color:'#'+Math.floor(Math.random() * 16777215).toString(16)}"
             :id="'item'+index"
           >{{item.name}}({{item.count}})</span>
         </div>
@@ -109,6 +108,18 @@ import solidHeart from "../../assets/solid_heart_blue.png";
 export default {
   data() {
     return {
+      colorList: [
+        "#d4237a",
+        "#f61f03",
+        "#13227a",
+        "#1296db",
+        "#a4579d",
+        "#d81e06",
+        "#0e932e",
+        "#db639b",
+        "#93470e",
+        "#f61f03"
+      ],
       likeNum: 4454,
       heartNum: 1000,
       hasClick: false,
@@ -183,8 +194,8 @@ export default {
     "my-main": Main
   },
   mounted() {
-    // this.labelBox.height =
-    //   $("body").height() - 4.5 * parseInt($("html").css("font-size")) + "px";
+ 
+    var _this=this;
     this.myChart.height =
       $("body").height() - 5.5 * parseInt($("html").css("font-size")) + "px";
     this.mySwipeimg.height =
@@ -192,6 +203,11 @@ export default {
     this.$nextTick(() => {
       setTimeout(() => {
         this.drawCharts1();
+        //给标签随机设置颜色
+        $(".tag-item").each(function() {
+          var color = _this.colorList[Math.floor(Math.random() * 10)];
+          $(this).css("color", color);
+        });
       }, 100);
     });
   },
@@ -293,11 +309,11 @@ export default {
         callback: function() {}
       });
     },
-    lookMore(){
-      this.$store.commit('changeTitle','个人印象');
-      this.$store.commit('changeBottomShow',false);
-      this.$store.commit('changetabRouterName','PersonImpression');
-      this.$router.push('PersonImpression');
+    lookMore() {
+      this.$store.commit("changeTitle", "个人印象");
+      this.$store.commit("changeBottomShow", false);
+      this.$store.commit("changetabRouterName", "PersonImpression");
+      this.$router.push("PersonImpression");
     }
   },
   computed: {}
@@ -388,11 +404,11 @@ export default {
   top: 0.25rem;
   right: 0rem;
 }
-.moreClass{
-  position:absolute;
-  top:0.2rem;
-  right: .4rem;
-  font-size: .28rem;
+.moreClass {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.4rem;
+  font-size: 0.28rem;
   /* color:#26a2ff; */
 }
 .label-box {

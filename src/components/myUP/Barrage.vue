@@ -6,7 +6,7 @@
       @click="chose(item)"
       v-for="(item,index) in tagList"
       :key="index"
-      :style="{color:colorList[Math.floor(Math.random() * 10)]}"
+      
     >{{item.name}}</span>
     <!-- <span class="tag-item" >我是达芙文</span>
     <span class="tag-item">我芙文</span>
@@ -81,6 +81,18 @@ export default {
          item.bgcolorHide=!item.bgcolorHide
       }
     }
+  },
+  mounted(){
+    var _this = this;
+    this.$nextTick(() => {
+      setTimeout(() => {
+        //给标签随机设置颜色
+        $(".tag-item").each(function() {
+          var color = _this.colorList[Math.floor(Math.random() * 10)];
+          $(this).css("color", color);
+        });
+      }, 100);
+    });
   }
   
 };
